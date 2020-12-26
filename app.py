@@ -5,22 +5,20 @@
 # In[2]:
 
 
-import sys
-import os
 import glob
+import os
 import re
+import sys
+
+import cv2
 import numpy as np
-
-from flask import Flask, redirect, url_for, request, render_template
-from werkzeug.utils import secure_filename
-
+import tensorflow as tf
+from flask import Flask, redirect, render_template, request, url_for
+from flask_cors import CORS
+from keras.applications.vgg16 import preprocess_input
 from keras.models import load_model
 from keras.preprocessing import image
-from keras.applications.vgg16 import preprocess_input
-import numpy as np
-import cv2
-import tensorflow as tf
-
+from werkzeug.utils import secure_filename
 
 # ### Defining the flask app
 
@@ -28,7 +26,8 @@ import tensorflow as tf
 
 
 app = Flask(__name__)
-
+app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app)
 
 # ### Loading your saved modal
 
@@ -98,7 +97,7 @@ def upload():
         return result
     
     # if not a 'POST' request we then return None
-    return "Nothing"
+    return None
 
 
 # ### Running the main application
