@@ -1,0 +1,12 @@
+.app{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.sectionOne h3{
+  font-size: 30px;
+}
+.sectionThree h2{
+  font-size: 25px;
+}
